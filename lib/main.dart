@@ -8,6 +8,11 @@ void main() {
       ),
       home: Scaffold(
         backgroundColor: Colors.blueGrey,
+        appBar: AppBar(
+          title: Center(
+            child: const Text('I Am Rich'),
+          ),
+        ),
       ),
     ),
   );

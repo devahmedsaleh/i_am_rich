@@ -13,6 +13,11 @@ void main() {
             child: const Text('I Am Rich'),
           ),
         ),
+        body: Center(
+          child: Image(
+            image: const AssetImage('images/diamond.png'),
+          ),
+        ),
       ),
     ),
   );

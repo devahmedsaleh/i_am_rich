@@ -5,7 +5,10 @@ void main() => runApp(IAmRich());
 class IAmRich extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    const String _title = 'I Am Rich';
+
     return MaterialApp(
+      title: _title,
       theme: ThemeData(
         primaryColor: Colors.blueGrey[900],
       ),
@@ -13,7 +16,7 @@ class IAmRich extends StatelessWidget {
         backgroundColor: Colors.blueGrey,
         appBar: AppBar(
           title: Center(
-            child: const Text('I Am Rich'),
+            child: const Text(_title),
           ),
         ),
         body: Center(

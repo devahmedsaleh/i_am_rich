@@ -1,30 +1,59 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter/material.dart';
 
 import 'package:i_am_rich/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+  const String appTitle = 'I Am Rich';
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  testWidgets('should have one materialApp', (WidgetTester tester) async {
+    await tester.pumpWidget(IAmRich());
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    final materialAppFinder = find.byType(MaterialApp);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(materialAppFinder, findsOneWidget);
+  });
+
+  testWidgets('should have a valid materialApp title',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(IAmRich());
+
+    final materialAppWithTitle = find.widgetWithText(MaterialApp, appTitle);
+
+    expect(materialAppWithTitle, findsOneWidget);
+  });
+
+  testWidgets('should have one Scaffold', (WidgetTester tester) async {
+    await tester.pumpWidget(IAmRich());
+
+    final scaffoldFinder = find.byType(Scaffold);
+
+    expect(scaffoldFinder, findsOneWidget);
+  });
+
+  testWidgets('should have one appBar', (WidgetTester tester) async {
+    await tester.pumpWidget(IAmRich());
+
+    final appBarFinder = find.byType(AppBar);
+
+    expect(appBarFinder, findsOneWidget);
+  });
+
+  testWidgets('should have a valid appBar title', (WidgetTester tester) async {
+    await tester.pumpWidget(IAmRich());
+
+    final appBarWithTitleFinder = find.widgetWithText(AppBar, appTitle);
+
+    expect(appBarWithTitleFinder, findsOneWidget);
+  });
+
+  testWidgets('should have a centered image', (WidgetTester tester) async {
+    await tester.pumpWidget(IAmRich());
+
+    final centerFinder = find.byType(Center);
+    final imageFinder = find.byType(Image);
+    final descendantFinder = find.descendant(of: centerFinder, matching: imageFinder);
+  
+    expect(descendantFinder, findsOneWidget);
   });
 }
